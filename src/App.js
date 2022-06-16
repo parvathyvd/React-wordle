@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Board from "./components/Board";
+import GameOver from "./components/GameOver";
+import Keyboard from "./components/Keyboard";
+import { BoardContext, useGlobalBoardContext } from "./context/BoardContext";
 
 function App() {
+  const { gameOver } = useGlobalBoardContext(BoardContext);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <nav>
+        <h1>Wordle</h1>
+      </nav>
+      <div className="game">
+        <Board />
+        {gameOver.gameOver ? <GameOver /> : <Keyboard />}
+      </div>
     </div>
   );
 }
